@@ -2,7 +2,7 @@ name: Aplicação Django
 
 on:
   push:
-    branches: [ "2" ]
+    branches: [ "4" ]
   pull_request:
     branches: [ "main" ]
 

@@ -5,6 +5,7 @@ app_name='tarefas'
 
 urlpatterns=[
     path('', views.home, name='home'),
-    path('<int:tarefa_id>', views.detalhe, name='detalhe'),
-    path('apagar/<int:tarefa_id>', views.apagar, name='apagar'),
+    path('<int:tarefa_id>', views.detalhe, name='detalhe'),  #o tarefa_id é um , parece que esta guardando a tarefa do view detalhe
+    path('apagar/<int:tarefa_id>', views.apagar, name='apagar'), #aqui esta apagando
 ]
+#aqui são os caminhos dentro do aplicativo tarefas, que estão detalhados em views

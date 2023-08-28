@@ -3,6 +3,7 @@ name: Aplicação Django
 on: [ push ]
 
 
+
 jobs:
   build:
     env:

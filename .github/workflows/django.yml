@@ -1,3 +1,5 @@
+#o git hub actions ira nos ajudar a reduzir ou sanar os bugs de sistema, para evitar de acontecer um bug quando o site estiver rodando nosso cliente
+#git hub actions é um servidor de integração continua
 name: Aplicação Django
 
 on: [ push ]

@@ -5,43 +5,43 @@
 
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">  <!--configuração de css-->
 </head>
 <body>
 <div class="container">
     <div class="row">
-        <div class="col-md-8 offset-md-2">
-            <h1 class="mt-5">Lista de Tarefas</h1>   <!--titulo do campo-->
+        <div class="col-md-8 offset-md-2"> <!--aqui estamos alinhando o texto-->
+            <h1 class="mt-5">Lista de Tarefas</h1>   <!--aqui estamos dando uma margem para o topo da pagina, e colocando titulo em h1 titulo do campo-->
 
-            <form action="{% url 'tarefas:home' %}" method="post">  <!--aqui é o primeiro passo tarefas:home, onde ira receber as tarefas e direcionar para detalhe-->
+            <form action="{% url 'tarefas:home' %}" method="post">  <!--estou utilizando o metodo post para envio de dados, que estamos enviando para "tarefa:home"-->
                 {% csrf_token %}
 
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Descreva sua tarefa"
-                           aria-label="Descreva sua tarefa" aria-describedby="button-addon2" name="nome">  <!--formulario que ira receber a tarefa-->
+                           aria-label="Descreva sua tarefa" aria-describedby="button-addon2" name="nome">  <!--esse name="nome" é o nome da minha propriedade, e é por esse parametro que vamos obter os dados do formulario-->
 
                     <button type="submit" class="btn btn-primary" type="button" id="button-addon2">Salvar</button>  <!--botão salvar-->
 
                 </div>
-                <small class="form-text text-muted">{{ form.nome.errors }}</small>
-            </form>  <!--fechando o form aqui-->
+                <small class="form-text text-muted">{{ form.nome.errors }}</small>    <!--essa é msg de erro que aperece embaixo do formulario salvar, se por acaso tentar salvar o formulario em branco-->
+            </form>                                                     <!--fechando o form aqui-->
             <h2 class="mt-5">Tarefas Pendentes</h2>   <!--titulo do campo-->
 
             {% for tarefa in tarefas_pendentes %}   <!--aqui esta separando as tarefas recebidas de tarefas home, por unidades-->
-            <form action="{% url 'tarefas:detalhe' tarefa_id=tarefa.id %}" method="post">
+            <form action="{% url 'tarefas:detalhe' tarefa_id=tarefa.id %}" method="post">      <!--abrindo o form, 'tarefas:detalhe' o endereço da url. tarefa_id=tarefa.id passando o id , esse tarefa.id é justamente o tarefa do for acima -->
                 {% csrf_token %}
 
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Descreva sua tarefa" required="required"
-                           aria-label="Descreva sua tarefa" name="nome" value="{{ tarefa.nome }}">
-                    <input type="hidden" value="checked" name="feita">  <!--os dois acima é configuração de campo de formulario-->
+                           aria-label="Descreva sua tarefa" name="nome" value="{{ tarefa.nome }}">  <!--esse value="{{ tarefa.nome }} é para o nome da tarefa ficar visivel dentro do formulario Tarefa Pendente, assim que o usuario salvar no campo Lista de Tarefa"-->
+                    <input type="hidden" value="checked" name="feita">  <!--esse feita é o nome da proriedade no modelo (acho que quer dizer nome da tag input). Esse "value="checked"" é um checked box, aqueles campos de marcação com v-->
 
                     <div class="input-group-append">
                         <button type="submit" class="btn btn-success">Marcar como feita</button> <!--botão de marcar como feita-->
                     </div>
                 </div>
 
-            </form>
+            </form>                                       <!--fechando o form-->
 
             {% endfor %}
 
@@ -50,7 +50,7 @@
             {% for tarefa in tarefas_feitas %} <!--separando as tarefas recebidas de Tarefas Pendentes, por unidade-->
             <div class="row">
                 <div class="col-2">
-                    <form action="{% url 'tarefas:apagar' tarefa_id=tarefa.id %}" method="post"> <!--ação apagando as tarefas, abrindo o form-->
+                    <form action="{% url 'tarefas:apagar' tarefa_id=tarefa.id %}" method="post"> <!--ação de apagar as tarefas, abrindo o form-->
                         {% csrf_token %}
 
                         <div class="input-group mb-3">
@@ -63,13 +63,13 @@
                     </form><!--fechando o form-->
                 </div>
                 <div class="col-10">
-                    <form action="{% url 'tarefas:detalhe' tarefa_id=tarefa.id %}" method="post">  <!--devolvendo para tarefa:detalhe as tarefas marcadas como pendentes, abrindo o form-->
+                    <form action="{% url 'tarefas:detalhe' tarefa_id=tarefa.id %}" method="post">  <!--devolvendo para tarefa:detalhe as tarefas marcadas como pendentes. Abrindo o form-->
                         {% csrf_token %}
 
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" placeholder="Descreva sua tarefa"
                                    required="required"
-                                   aria-label="Descreva sua tarefa" name="nome" value="{{ tarefa.nome }}"> <!--configurações dos campo de formularios, os dois inputs acima-->
+                                   aria-label="Descreva sua tarefa" name="nome" value="{{ tarefa.nome }}"> <!--esse value="{{ tarefa.nome }} é para o nome da tarefa ficar visivel dentro do formulario Tarefa concluidas, assim que o usuario salvar no campo tarefa pendente"-->
 
 
                             <div class="input-group-append">

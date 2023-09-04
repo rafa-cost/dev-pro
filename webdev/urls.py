@@ -21,5 +21,5 @@ from webdev.tarefas import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.home),
-    path('tarefas/', include('webdev.tarefas.urls')), #caminho da pagina principal
+    path('tarefas/', include('webdev.tarefas.urls')),
 ]

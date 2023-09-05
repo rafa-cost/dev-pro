@@ -7,7 +7,7 @@ from webdev.tarefas.models import Tarefa
 
 @pytest.fixture
 def tarefa(db):      #acessando o banco de dados
-    return Tarefa.objects.create(nome='Tarefa 1', feita=False)   #consultando o banco de dados, e vendo que tarefa feita é igual a false
+    return Tarefa.objects.create(nome='Tarefa 1', feita=False)   #consultando o banco de dados, e vendo que tarefa imparcial é igual a false
 
 
 @pytest.fixture
@@ -18,5 +18,5 @@ def resposta(client, tarefa):   #
     return resp
 
 def test_apagar_tarefa(resposta):
-    assert not Tarefa.objects.exists()   #aqui esta confirmando se tarefa não existe
+    assert not Tarefa.objects.exists()   #aqui esta confirmando que a tarefa não existe
 

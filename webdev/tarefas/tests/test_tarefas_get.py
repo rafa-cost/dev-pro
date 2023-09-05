@@ -43,15 +43,15 @@ def lista_de_tarefas_feitas(db):
 
 
 @pytest.fixture
-def resposta_com_lista_de_tarefas(client, lista_de_tarefas_pendentes, lista_de_tarefas_feitas):
+def resposta_com_lista_de_tarefas(client, lista_de_tarefas_pendentes, lista_de_tarefas_feitas):   #aqui ele esta pegando tanto a lista de tarefa pendentes, como o lista de tarefas feitas.
     resp = client.get(reverse('tarefas:home'))
     return resp
 
 
-def test_lista_de_tarefas_pendentes_presentes(resposta_com_lista_de_tarefas, lista_de_tarefas_pendentes):   #aqui esta pegando a lista de tarefas pendentes
-    for tarefa in lista_de_tarefas_pendentes:             #aqui esta separando as tarefas individualmente
-        assertContains(resposta_com_lista_de_tarefas, tarefa.nome)        #e aqui esta confirmando se o nome das tarefas aparece
+def test_lista_de_tarefas_pendentes_presentes(resposta_com_lista_de_tarefas, lista_de_tarefas_pendentes):   #aqui esta pegando a lista de tarefas pendentes , como a lista de tarefas
+    for tarefa in lista_de_tarefas_pendentes:             #aqui esta separando as tarefas pendentes individualmente
+        assertContains(resposta_com_lista_de_tarefas, tarefa.nome)        #e aqui esta confirmando se o nome das tarefas aparecem
 
 def test_lista_de_tarefas_feitas_presentes(resposta_com_lista_de_tarefas, lista_de_tarefas_feitas):       #aqui esta pegando a lista de tarefas feitas
-    for tarefa in lista_de_tarefas_feitas:                                 #aqui esta separando as tarefas individualmente
+    for tarefa in lista_de_tarefas_feitas:                                 #aqui esta separando as tarefas feitas individualmente
         assertContains(resposta_com_lista_de_tarefas, tarefa.nome)          #e aqui esta confirmando os nomes das tarefas

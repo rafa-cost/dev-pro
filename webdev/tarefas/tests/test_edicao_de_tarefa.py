@@ -7,7 +7,7 @@ from webdev.tarefas.models import Tarefa
 
 @pytest.fixture
 def tarefa_pendente(db): #acessando o banco de dados
-    return Tarefa.objects.create(nome='Tarefa 1', feita=False)
+    return Tarefa.objects.create(nome='Tarefa 1', feita=False)     #consultando no banco de dados , que a tarefa que não foi feita é pendente
 
 
 @pytest.fixture
@@ -19,13 +19,12 @@ def resposta_com_tarefa_pendente(client, tarefa_pendente):
     return resp
 
 
-def test_status_code(resposta_com_tarefa_pendente):
+def test_status_code(resposta_com_tarefa_pendente):           #aqui o teste de tarefa feita , virar tarefa pendente
     assert resposta_com_tarefa_pendente.status_code == 302
 
 
-def test_tarefa_feita(resposta_com_tarefa_pendente):
-    assert Tarefa.objects.first().feita              #aqui o teste de tarefa feita , virar tarefa pendente
-
+def test_tarefa_feita(resposta_com_tarefa_pendente):        #aqui é o tarefa pendente virar o tarefa feita
+    assert Tarefa.objects.first().feita
 
 @pytest.fixture
 def tarefa_feita(db):                                          #acessando o banco de dados

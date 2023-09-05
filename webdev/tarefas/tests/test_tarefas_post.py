@@ -26,5 +26,5 @@ def test_tarefa_não_existe_no_bd(resposta_dado_invalido):
     assert not Tarefa.objects.exists()                                 #afirmando que tarefa não existe
 
 
-def test_pagina_com_dados_invalidos(resposta_dado_invalido):          #pagina com dados ivalidos , vai dar o codigo de erro 400
-    assert resposta_dado_invalido.status_code == 400
+def test_pagina_com_dados_invalidos(resposta_dado_invalido):          #pagina com dados invalidos
+    assert resposta_dado_invalido.status_code == 400                  # vai dar o codigo de erro 400
